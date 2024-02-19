@@ -46,25 +46,38 @@ function App() {
       <form onSubmit={createDiary}>
         <label htmlFor='date'>date</label>{' '}
         <input
+          type='date'
           id='date'
           value={date}
           onChange={(event) => setDate(event.target.value)}
         />
-        <br /> <label htmlFor='weather'>weather</label>{' '}
-        <input
-          id='weather'
-          type='text'
+        <br />
+        <label htmlFor='weather'>weather</label>{' '}
+        <select
           value={weather}
-          onChange={(event) => setWeather(event.target.value)}
-        />
-        <br /> <label htmlFor='visibility'>visibility</label>{' '}
-        <input
-          id='visibility'
-          type='text'
+          name='weather'
+          id='weather'
+          onChange={(event) => setWeather(event.target.value)}>
+          <option value='sunny'>Sunny</option>
+          <option value='rainy'>Rainy</option>
+          <option value='cloudy'>Cloudy</option>
+          <option value='stormy'>Stormy</option>
+          <option value='windy'>Windy</option>
+        </select>
+        <br />
+        <label htmlFor='visibility'>visibility</label>{' '}
+        <select
           value={visibility}
-          onChange={(event) => setVisibility(event.target.value)}
-        />
-        <br /> <label htmlFor='comment'>comment</label>{' '}
+          name='visibility'
+          id='visibility'
+          onChange={(event) => setVisibility(event.target.value)}>
+          <option value='great'>Great</option>
+          <option value='good'>Good</option>
+          <option value='ok'>Ok</option>
+          <option value='poor'>Poor</option>
+        </select>
+        <br />
+        <label htmlFor='comment'>comment</label>{' '}
         <input
           id='comment'
           type='text'
