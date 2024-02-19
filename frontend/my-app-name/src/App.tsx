@@ -91,10 +91,15 @@ function App() {
       {diaries.map((entry) => {
         return (
           <div key={entry.id}>
-            <p>
-              {entry.id} -{entry.date} -{entry.weather}- {entry.visibility}
-            </p>
-            <p>comment: {entry.comment}</p>
+            ID - {entry.id}
+            <br />
+            Date: {entry.date}
+            <br />
+            Weather - {entry.weather}
+            <br />
+            Visibility - {entry.visibility}
+            <br />
+            comment: {entry.comment}
           </div>
         )
       })}
