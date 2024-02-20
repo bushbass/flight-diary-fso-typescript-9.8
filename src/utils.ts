@@ -23,7 +23,7 @@ const toNewDiaryEntry = (object: unknown): NewDiaryEntry => {
 export default toNewDiaryEntry;
 
 const parseComment = (comment: unknown): string => {
-    if (!comment || !isString(comment)) {
+    if ( !isString(comment)) {
         throw new Error('Incorrect or missing comment');
     }
     return comment;

@@ -9,6 +9,7 @@ function App() {
   const [visibility, setVisibility] = useState('')
   const [comment, setComment] = useState('')
   const [diaries, setDiaries] = useState<DiaryEntry[]>([])
+  const [inputError, setInputError] = useState('')
 
   useEffect(() => {
     axios
@@ -20,6 +21,7 @@ function App() {
   }, [])
 
   const createDiary = (event: React.SyntheticEvent) => {
+    setInputError('')
     event.preventDefault()
     const diaryEntryToAdd = {
       date,
@@ -32,17 +34,21 @@ function App() {
       .post('http://localhost:3000/api/diaries/', diaryEntryToAdd)
       .then(function (response) {
         setDiaries([...diaries, response.data])
+        setWeather('')
+        setDate('')
+        setVisibility('')
+        setComment('')
       })
-      .catch(function (error) {
-        console.log(error)
+      .catch((error) => {
+        setInputError(error.response.data)
       })
-
-    setDate('')
   }
 
   return (
     <>
-      <h1>home</h1>
+      <h2>Add Diary Entry</h2>
+      {inputError ? <p style={{"color":"red"}}>{inputError}</p> : null}
+
       <form onSubmit={createDiary}>
         <label htmlFor='date'>date</label>{' '}
         <input
@@ -58,6 +64,7 @@ function App() {
           name='weather'
           id='weather'
           onChange={(event) => setWeather(event.target.value)}>
+          <option value=''></option>
           <option value='sunny'>Sunny</option>
           <option value='rainy'>Rainy</option>
           <option value='cloudy'>Cloudy</option>
@@ -71,6 +78,7 @@ function App() {
           name='visibility'
           id='visibility'
           onChange={(event) => setVisibility(event.target.value)}>
+          <option value=''></option>
           <option value='great'>Great</option>
           <option value='good'>Good</option>
           <option value='ok'>Ok</option>
